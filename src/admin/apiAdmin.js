@@ -124,3 +124,26 @@ export const deleteProduct = (productId, userId, token) => {
             console.log(err);
         });
 };
+
+export const getProduct = productId => {
+    return fetch(`${API}/product/${productId}`, {
+        method: "GET"
+    })
+        .then( response => {
+            return response.json();
+        })
+        .catch( err => console.log(err));
+};
+
+export const updateProduct = ( productId, userId, token, product ) => {
+    return fetch(`${API}/product/${productId}/${userId}`,{
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: product
+    }).then( response => {
+        return response.json();
+    }).catch( err => console.log(err));
+};
