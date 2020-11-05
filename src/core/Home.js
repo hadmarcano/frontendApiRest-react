@@ -33,13 +33,16 @@ const Home = () => {
     };
 
     const loadProductsByArrival = () => {
-        getProducts("createdAt").then(data => {
-            if (data.error) {
-                setError(data.error);
-            } else {
-                setProductsByArrival(data);
-            }
-        });
+        getProducts("createdAt")
+            .then( (data) => {
+                if (data.error) {
+                    setError(data.error);
+                } else {
+                    setProductsByArrival(data);
+                }
+            })
+            .catch((e)=>{
+                console.log(e);            })
     };
 
     useEffect( () => {
